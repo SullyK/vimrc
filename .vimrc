@@ -1,5 +1,6 @@
 call plug#begin()
 Plug 'ajmwagar/vim-deus'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 
 colorscheme deus
@@ -26,6 +27,16 @@ set ruler                    " Show row and column ruler information
 
 set undolevels=1000          " Number of undo levels
 set backspace=indent,eol,start " Backspace behaviour
+set cindent " should help me with c indent, will check back
+
+"clang format current buffer in vim - Ctrl + K
+"old version - map <C-K> :%!clang-format<CR>  
+map <C-K> mz:%!clang-format<CR>'z
+
+"basic build and compile script which runs for c files
+command! -nargs=0 CC :w | set makeprg=~/comp_run_c.sh\ %:t | make
+
+command! G GoRun
 
 syntax on
 
